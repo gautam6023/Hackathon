@@ -1,9 +1,12 @@
 var cookieParser = require('cookie-parser')
+const User = require("../models/User.model")
 const { verifyToken } = require('../controllers/token.controller')
 
-const protect = async (req, res) => {
+const protect = async (req, res, next) => {
 
     const token = req.cookies.token
+
+    console.log(token)
 
     let payload
     try {
@@ -18,7 +21,7 @@ const protect = async (req, res) => {
 
     let UserData
     try {
-        UserData = await User.findOne(payload.id)
+        UserData = await User.findById(payload.id)
     } catch (err) {
         return res.status(500).json({ err: err.message })
     }

@@ -29,7 +29,8 @@ const signup = async (req, res) => {
         res.cookie('token', token, {
             httpOnly: true
         })
-
+    
+       
        return res.status(200).send({acknowledge:true })
 
     } catch (err) {
@@ -71,15 +72,13 @@ const signin = async (req, res) => {
             httpOnly: true
         })
         
-        res.redirect('http://localhost:3000/home')
+
 
         return res.status(200).send({acknowledge:true })
     
     } catch (err) {
         return res.status(500).send({ err: err.message })
     }
-
-
 }
 
  const signout = async (req,res)=>{
@@ -92,17 +91,13 @@ const signin = async (req, res) => {
     
  }
 
-
- 
-
-
 const getUser = async (req, res) => {
 
     const { userId } = req.params;
 
     let UserData
     try {
-        UserData = await User.findOne({ id: userId })
+        UserData = await User.findById(userId)
         return res.status(200).json(UserData)
     } catch (err) {
         return res.status(500).json({ err: err.message })
