@@ -1,11 +1,6 @@
-import Message from "../models/message.model";
+const Message = require("../models/message.model") 
 
-messageRouter.post('/',createMessage)
-messageRouter.get('/:chatId',getMessages)
-
-
-
-export const createMessage = async (req, res) => {
+ const createMessage = async (req, res) => {
 
     const { userId, receiverId,message } = req.body;
 
@@ -18,7 +13,7 @@ export const createMessage = async (req, res) => {
     }
 }
 
-export const getMessages = async (req,res)=>{
+ const getMessages = async (req,res)=>{
   const {chatId} = req.params;
 
   let messageData
