@@ -1,7 +1,7 @@
 const {Schema,model} = require('mongoose')
 
 const ChatSchema = new Schema({
-    members:[{type:String}],
+    members:[{type:String}]
 
 },
 {
@@ -9,4 +9,4 @@ const ChatSchema = new Schema({
 })
 
 const Chat = model('Chat',ChatSchema)
-module.exports = Chat;
+module.exports = Chat

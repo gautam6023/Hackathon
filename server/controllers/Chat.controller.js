@@ -1,12 +1,6 @@
-import Chat from "../models/Chat.model";
+const Chat  = require('../models/Chat.model')
 
-chatRouter.post('/', createChat)
-chatRouter.get('/:userId', getUserChats)
-chatRouter.get('/find/:userId/:chatId', getChat)
-
-
-
-export const createChat = async (req, res) => {
+ const createChat = async (req, res) => {
 
     const { userId, receiverId } = req.body;
 
@@ -19,7 +13,7 @@ export const createChat = async (req, res) => {
     }
 }
 
-export const getUserChats = async (req,res)=>{
+ const getUserChats = async (req,res)=>{
   const {userId} = req.params;
 
   let chatData
