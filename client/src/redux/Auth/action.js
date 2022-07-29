@@ -28,7 +28,7 @@ export const createAccount = (payload, navigate) => async (dispatch) => {
       withCredentials: true,
     });
     console.log(data, "data");
-    dispatch(signupType(data));
+    dispatch(signupType(data.UserData));
     if (data) {
       navigate("/");
     }
@@ -65,7 +65,7 @@ export const signinAccount = (payload, navigate) => async (dispatch) => {
     );
     console.log(data, "data");
 
-    dispatch(signinType(data));
+    dispatch(signinType(data.UserData));
     if (data) {
       navigate("/");
     }
@@ -89,7 +89,7 @@ export const getUser = () => async (dispatch) => {
     const { data } = await axios.get("http://localhost:7000/user/getuser", {
       withCredentials: true,
     });
-    // console.log(data, "getUser");
+    console.log(data, "getUser");
 
     if (data) {
       //   navigate("/");

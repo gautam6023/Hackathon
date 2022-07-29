@@ -2,13 +2,13 @@
 import "./App.css";
 import Chat from "./components/Chat/Chat";
 import Navbar from "./components/Nav/Navbar";
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import Login from "./components/Auth/Create AccountPages/Login";
 import Signin from "./components/Auth/Sign pages/Signin";
 import { useSelector } from "react-redux";
 function App() {
   const { user } = useSelector((state) => state.isAuth);
-
+  console.log(user, "app");
   return (
     <div className="App">
       <Navbar />

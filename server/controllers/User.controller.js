@@ -104,10 +104,22 @@ const checkUser = async (req, res) => {
   }
 };
 
+const getSpecificUser = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const user = await User.findById(id);
+    res.status(200).json({ user });
+  } catch (e) {
+    res.status(500).json({ message: e.message });
+  }
+};
+
 module.exports = {
   signup,
   signin,
   signout,
   getUser,
   checkUser,
+  getSpecificUser,
 };

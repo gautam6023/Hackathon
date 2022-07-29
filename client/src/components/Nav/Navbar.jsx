@@ -3,22 +3,24 @@ import { NavWrapper } from "./Nav.styled";
 import { RiAccountCircleFill } from "react-icons/ri";
 import { useDispatch, useSelector } from "react-redux";
 import { getUser } from "../../redux/Auth/action";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 const Navbar = () => {
   const dispatch = useDispatch();
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const { user } = useSelector((state) => state.isAuth);
-
-  useEffect(() => {
-    if (!user.name) {
-      dispatch(getUser());
-    }
-  }, []);
+  console.log(user);
+  // useEffect(() => {
+  //   if (!user.firstName) {
+  //     dispatch(getUser());
+  //   }
+  // }, []);
 
   return (
     <NavWrapper>
       <div className="logoContainer">
-        <p className="we">We Communicate</p>
+        <p className="we" onClick={() => navigate("/")}>
+          We Communicate
+        </p>
       </div>
       <div className="login">
         <div className="user">
@@ -33,6 +35,9 @@ const Navbar = () => {
             <span className="username">
               {user.firstName ? user.firstName : "User"}
             </span>
+            <button>
+              <Link to={"/login"}>Login</Link>
+            </button>
           </div>
         </div>
       </div>
