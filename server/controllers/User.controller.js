@@ -6,6 +6,8 @@ const { generateToken, verifyToken } = require('./token.controller')
 const signup = async (req, res) => {
 
     const { email } = req.body;
+     
+
 
     let UserData
     try {
