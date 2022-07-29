@@ -11,8 +11,6 @@ function App() {
 
   return (
     <div className="App">
-      {/* <Navbar />
-      <Chat /> */}
       <Navbar />
       <Routes>
         <Route path={"/"} element={<Chat />} />

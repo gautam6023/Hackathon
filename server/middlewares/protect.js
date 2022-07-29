@@ -1,4 +1,4 @@
-var cookieParser = require('cookie-parser')
+
 const User = require("../models/User.model")
 const { verifyToken } = require('../controllers/token.controller')
 
@@ -7,6 +7,7 @@ const protect = async (req, res, next) => {
     const token = req.cookies.token
 
     console.log(token)
+    if(!token) return res.status(401).json({message:"No Token provided"})
 
     let payload
     try {
