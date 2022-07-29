@@ -107,32 +107,22 @@ export const getUser = () => async (dispatch) => {
   }
 };
 
-
-const signoutType = ()=>({
-  type:SIGN_OUT,
-  
- }
-)
+const signoutType = () => ({
+  type: SIGN_OUT,
+});
 
 export const signoutAccount = (navigate) => async (dispatch) => {
-  
-
   dispatch(getRequest());
 
   try {
     // console.log(process.env.REACT_APP_BASE_URL);
-        const { data } = await axios.post(
-      "http://localhost:7000/user/signout",
-           {
-        withCredentials:true,
-        credentials:"incluedes"
-      }
-    )
-  
+    const { data } = await axios.post("http://localhost:7000/user/signout", {
+      withCredentials: true,
+      credentials: "includes",
+    });
 
     dispatch(signoutType());
-      navigate("/login");
-  
+    navigate("/login");
   } catch (e) {
     console.log(e);
     if (e.response?.data?.message) {
