@@ -6,6 +6,7 @@ import { VscChevronRight } from "react-icons/vsc";
 
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { createAccount } from "../../../redux/Auth/action";
 //import { CartCount_Context } from "../../Context/cartCounter";
 
 const LeftSection = () => {
@@ -36,6 +37,19 @@ const LeftSection = () => {
     console.log(formData);
     let timer;
     clearTimeout(timer);
+
+    if (
+      !formData.firstNamme &&
+      !formData.lastName &&
+      !formData.imgUrl &&
+      !formData.email &&
+      !formData.password
+    ) {
+      alert("Invalid input");
+      return;
+    }
+
+    dispatch(createAccount(formData));
     // axios.post("", formData).then((res) => {
     //   if (res.data.error) {
     //     setlogError(res.data);
@@ -145,7 +159,7 @@ const LeftSection = () => {
                     <input
                       className={styled.input}
                       type={"url"}
-                      name={"Imageurl"}
+                      name={"imgUrl"}
                       onChange={handlechange}
                     />
                     <div

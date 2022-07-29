@@ -5,7 +5,7 @@ import {
   SIGN_UP,
   GET_SUCCESS,
   GET_FAILURE,
-  GET_REQUIEST,
+  GET_REQUEST,
 } from "./action";
 
 const initState = {
@@ -28,7 +28,7 @@ export const authReducer = (state = initState, { type, payload }) => {
         user: payload,
       };
 
-    case GET_REQUIEST:
+    case GET_REQUEST:
       return {
         ...state,
         isLoading: true,
