@@ -19,14 +19,21 @@ const signupType = (payload) => ({
   payload,
 });
 
-export const createAccount = (payload) => async (dispatch) => {
+
+export const createAccount = (payload,navigate) => async (dispatch) => {
   dispatch(getRequest());
   try {
     // console.log(process.env.REACT_APP_BASE_URL);
     console.log(payload, "payload");
-    const { data } = await axios.post("http://localhost:7000/user", payload);
-
-    // console.log(data);
+    const { data } = await axios.post("http://localhost:7000/user", payload, {
+      withCredentials: true, });
+    console.log(data,"data")
+    dispatch(signupType(data))
+    if(data){
+      navigate('/')
+    }
+    
+    
   } catch (e) {
     console.log(e);
     if (e.response.data.message) {
@@ -37,3 +44,73 @@ export const createAccount = (payload) => async (dispatch) => {
     console.log(e);
   }
 };
+
+
+
+const signinType = (payload)=>({
+ type:SIGN_IN,
+ payload
+})
+
+
+export const signinAccount = (payload,navigate) => async (dispatch) => {
+   
+  if(!payload.email && !payload.password) 
+   return alert('Invalid Input')
+
+  dispatch(getRequest());
+   
+  try {
+    // console.log(process.env.REACT_APP_BASE_URL);
+    console.log(payload, "payload");
+    const { data } = await axios.post("http://localhost:7000/user/signin", payload, {
+      withCredentials: true, });
+    console.log(data,"data")
+
+    dispatch(signinType(data))
+    if(data){
+      navigate('/')
+    }
+    
+    
+  } catch (e) {
+
+    console.log(e);
+    if (e.response?.data?.message) {
+      alert(e.response.data.message);
+    } else {
+      console.log(e);
+    }
+    console.log(e);
+  }
+};
+
+
+
+export const getUser = ()=> async (dispatch)=>{
+
+  dispatch(getRequest());
+   
+  try {
+    // console.log(process.env.REACT_APP_BASE_URL);
+   
+    const { data } = await axios.get("http://localhost:7000/user/getuser", {
+      withCredentials: true, });
+       console.log(data,"getUser")
+
+    // dispatch(signinType(data))
+   
+    
+    
+  } catch (e) {
+
+    console.log(e);
+    if (e.response?.data?.message) {
+      alert(e.response.data.message);
+    } else {
+      console.log(e);
+    }
+    console.log(e);
+  }
+
+}

@@ -9,11 +9,12 @@ const cors = require("cors");
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
-app.use(
-  cors({
-    origin: ["http://localhost:3000"],
-  })
-);
+const corsOptions = {
+  origin: true, //included origin as true
+  credentials: true, //included credentials as true
+};
+
+app.use(cors(corsOptions));
 
 app.use("/chat", chatRouter);
 app.use("/msg", msgRouter);

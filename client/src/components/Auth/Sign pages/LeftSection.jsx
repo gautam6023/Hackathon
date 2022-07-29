@@ -4,8 +4,11 @@ import styled from "./LeftSection.module.css";
 //import { CartCount_Context } from "../../Context/cartCounter";
 import { red } from "@mui/material/colors";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { signinAccount } from "../../../redux/Auth/action";
 
 const Left = () => {
+  const dispatch = useDispatch()
   const navigate = useNavigate();
   const [formData, Setformdata] = useState({});
   const [pass, Setpass] = useState("text");
@@ -30,6 +33,7 @@ const Left = () => {
     e.preventDefault();
 
     console.log(formData);
+    dispatch(signinAccount(formData, navigate))
     let timer;
     clearTimeout(timer);
     // axios.post("", formData).then((res) => {
@@ -75,9 +79,9 @@ const Left = () => {
                       style={
                         logError.error == "email" || logError.error == "error"
                           ? {
-                              boxShadow: "0 0 0 4px rgba(245,111,14,.15)",
-                              borderColor: "#bb0628",
-                            }
+                            boxShadow: "0 0 0 4px rgba(245,111,14,.15)",
+                            borderColor: "#bb0628",
+                          }
                           : undefined
                       }
                       className={styled.uniqueInput}
@@ -123,11 +127,11 @@ const Left = () => {
                     <div
                       style={
                         logError.error == "password" ||
-                        logError.error == "error"
+                          logError.error == "error"
                           ? {
-                              boxShadow: "0 0 0 4px rgba(245,111,14,.15)",
-                              borderColor: "#bb0628",
-                            }
+                            boxShadow: "0 0 0 4px rgba(245,111,14,.15)",
+                            borderColor: "#bb0628",
+                          }
                           : undefined
                       }
                       className={styled.uniqueInput}
@@ -163,7 +167,7 @@ const Left = () => {
                       position: "absolute",
                       opacity:
                         logError.error == "error" ||
-                        logError.error == "password"
+                          logError.error == "password"
                           ? "1"
                           : "0",
                     }}

@@ -11,6 +11,7 @@ import { createAccount } from "../../../redux/Auth/action";
 
 const LeftSection = () => {
   const dispatch = useDispatch();
+ 
   const [formData, Setformdata] = useState({});
   const navigate = useNavigate();
   const [pass, Setpass] = useState("text");
@@ -49,7 +50,7 @@ const LeftSection = () => {
       return;
     }
 
-    dispatch(createAccount(formData));
+    dispatch(createAccount(formData,navigate));
     // axios.post("", formData).then((res) => {
     //   if (res.data.error) {
     //     setlogError(res.data);
