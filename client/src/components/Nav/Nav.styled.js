@@ -38,19 +38,35 @@ export const NavWrapper = styled.nav`
       display: flex;
       align-items: center;
       justify-content: center;
+
       gap: 10px;
-      /* border: 1px solid black; */
-      p {
+      & > div {
+        /* border: 1px solid white; */
+        width: 175px;
+
         color: #ffffff;
         display: flex;
+        justify-content: center;
+        gap: 20px;
+        height: 100%;
         align-items: center;
-        font-size: 18px;
+
+        /* font-size: 18px;*/
+
         span:last-child {
-          height: 100%;
-          display: flex;
-          align-items: center;
-          font-size: 25px;
-          margin-left: 10px;
+          font-size: 20px;
+          font-weight: 500;
+        }
+      }
+      span:first-child {
+        /* border: 1px solid red; */
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .profilePic {
+          width: 40px;
+          border-radius: 50%;
         }
       }
     }

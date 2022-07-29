@@ -4,19 +4,14 @@ import { RiAccountCircleFill } from "react-icons/ri";
 import { useDispatch, useSelector } from "react-redux";
 import { getUser } from "../../redux/Auth/action";
 const Navbar = () => {
-  const dispatch = useDispatch()
-  const {UserData} = useSelector((state)=>state.isAuth.user)
- 
-
-
-   useEffect(()=>{
-    if(!UserData){
-      dispatch(getUser())
+  const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.isAuth);
+  console.log(user);
+  useEffect(() => {
+    if (!user) {
+      dispatch(getUser());
     }
-    
-    
-   },[])
-
+  }, []);
 
   return (
     <NavWrapper>
@@ -25,12 +20,16 @@ const Navbar = () => {
       </div>
       <div className="login">
         <div className="user">
-          <p>
-            <span>{UserData?.firstName}</span>
+          <div>
             <span>
-              <RiAccountCircleFill />
+              {user ? (
+                <img className="profilePic" src={user.imgUrl} alt="" />
+              ) : (
+                <RiAccountCircleFill />
+              )}
             </span>
-          </p>
+            <span className="username">{user ? user.firstName : "User"}</span>
+          </div>
         </div>
       </div>
     </NavWrapper>
