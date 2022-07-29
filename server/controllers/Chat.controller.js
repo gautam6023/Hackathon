@@ -1,3 +1,4 @@
+const { tryWrapperForImpl } = require('whatwg-url/lib/utils');
 const Chat  = require('../models/Chat.model')
 
  const createChat = async (req, res) => {
@@ -6,7 +7,7 @@ const Chat  = require('../models/Chat.model')
 
     let chatData
     try {
-        chatData = await Chat.create({ members: [{ userId, receiverId }] })
+        chatData = await Chat.create({ members: [ userId, receiverId ] })
         res.status(200).json({ chatData })
     } catch (err) {
         return res.status(500).json({ err: err.message })
@@ -18,7 +19,7 @@ const Chat  = require('../models/Chat.model')
 
   let chatData
     try {
-        chatData = await Chat.findOne({members:{$in:[userId]}})
+        chatData = await Chat.find({members:{$in:[userId]}})
         res.status(200).json({ chatData })
     } catch (err) {
         return res.status(500).json({ err: err.message })
@@ -26,9 +27,24 @@ const Chat  = require('../models/Chat.model')
  
 }
 
-// export const getChat
+ const getChat = async (req,res)=>{
+   
+    const{userId,receiverId} = req.params;
+     let chatData
+     try{
+        chatData = await Chat.findOne({members:{$all:[userId,receiverId]}})
+        res.status(200).json({chatData})
+     }catch(err){
+
+     return res.status(500).json({err:err.message})
+      }
+    
+
+ }
 
 module.exports ={
     createChat, 
-    getUserChats 
+    getUserChats,
+    getChat
 }
+
