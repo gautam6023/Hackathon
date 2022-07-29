@@ -5,11 +5,11 @@ import { VscAccount } from "react-icons/vsc";
 import { VscChevronRight } from "react-icons/vsc";
 
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 //import { CartCount_Context } from "../../Context/cartCounter";
 
-
-
 const LeftSection = () => {
+  const dispatch = useDispatch();
   const [formData, Setformdata] = useState({});
   const navigate = useNavigate();
   const [pass, Setpass] = useState("text");
@@ -33,28 +33,26 @@ const LeftSection = () => {
   const handleSubmit = (e) => {
     var id = localStorage.getItem("userid") || "";
     e.preventDefault();
-    //console.log(formData)
-    let timer
+    console.log(formData);
+    let timer;
     clearTimeout(timer);
-    axios
-      .post("", formData)
-      .then((res) => {
-        if (res.data.error) {
-          setlogError(res.data);
-          timer = setTimeout(() => {
-            setlogError({
-              error: "",
-              message: "",
-            });
-          }, 3000);
-          return;
-        }
-        const user = res.data;
-        console.log("user:", user);
-        localStorage.setItem("userid", user._id);
-        //setIsLogged(user._id);
-        navigate("/signin");
-      });
+    // axios.post("", formData).then((res) => {
+    //   if (res.data.error) {
+    //     setlogError(res.data);
+    //     timer = setTimeout(() => {
+    //       setlogError({
+    //         error: "",
+    //         message: "",
+    //       });
+    //     }, 3000);
+    //     return;
+    //   }
+    //   const user = res.data;
+    //   console.log("user:", user);
+    //   localStorage.setItem("userid", user._id);
+    //   //setIsLogged(user._id);
+    //   navigate("/signin");
+    // });
   };
 
   const handlenav = () => {
@@ -146,8 +144,8 @@ const LeftSection = () => {
                   <div>
                     <input
                       className={styled.input}
-                    type={"url"}
-                    name={"Imageurl"}
+                      type={"url"}
+                      name={"Imageurl"}
                     />
                     <div
                       style={

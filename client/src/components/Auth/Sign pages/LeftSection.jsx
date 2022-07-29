@@ -5,8 +5,6 @@ import styled from "./LeftSection.module.css";
 import { red } from "@mui/material/colors";
 import { useNavigate } from "react-router-dom";
 
-
-
 const Left = () => {
   const navigate = useNavigate();
   const [formData, Setformdata] = useState({});
@@ -30,29 +28,29 @@ const Left = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    let timer
-    clearTimeout(timer);
-    axios
-      .post("", formData)
-      .then((res) => {
-        if (res.data.error) {
-          setlogError(res.data);
-          timer = setTimeout(() => {
-            setlogError({
-              error: "",
-              message: "",
-            });
-          }, 3000);
-          return;
-        }
 
-        const user = res.data;
-        // console.log("user:", user);
-        localStorage.setItem("userid", user[0]._id);
-        //setIsLogged(user[0]._id);
-        alert("Sign In Successful");
-        navigate("/user");
-      });
+    console.log(formData);
+    let timer;
+    clearTimeout(timer);
+    // axios.post("", formData).then((res) => {
+    //   if (res.data.error) {
+    //     setlogError(res.data);
+    //     timer = setTimeout(() => {
+    //       setlogError({
+    //         error: "",
+    //         message: "",
+    //       });
+    //     }, 3000);
+    //     return;
+    //   }
+
+    //   const user = res.data;
+    //   // console.log("user:", user);
+    //   localStorage.setItem("userid", user[0]._id);
+    //   //setIsLogged(user[0]._id);
+    //   alert("Sign In Successful");
+    //   navigate("/user");
+    // });
   };
   return (
     <>
