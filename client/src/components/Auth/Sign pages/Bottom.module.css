@@ -1,0 +1,47 @@
+.securitytab {
+  padding-top: 5px;
+  height: auto;
+  padding-bottom: 10px;
+  display: flex;
+  margin-top: 10px;
+}
+.securitytab svg {
+  float: left;
+  margin-top: 10px;
+  margin-left: 50px;
+  margin-right: 10px;
+  margin-top: 25px;
+}
+.p {
+  display: block;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+}
+.h3,
+strong {
+  font-weight: 600;
+  font-size: 16px;
+}
+
+/* h2, h3 {
+    color: #1d252c;
+} */
+
+.h3 {
+  display: block;
+  font-size: 1.17em;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+
+  font-weight: bold;
+}
+
+.securitytab1 {
+  max-width: 95%;
+}
+
+.securityprivacy {
+  display: inline;
+}
