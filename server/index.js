@@ -18,11 +18,8 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
-
-
 app.use("/chat", chatRouter);
 app.use("/msg", msgRouter);
 app.use("/user", userRouter);
-
 
 module.exports = app;

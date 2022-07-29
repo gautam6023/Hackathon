@@ -7,9 +7,10 @@ import {
   GET_FAILURE,
   GET_REQUEST,
 } from "./action";
+import { saveData, loadData } from "../../utils/localStorage";
 
 const initState = {
-  user: {},
+  user: loadData("user") || {},
   isLoading: false,
   isError: false,
 };
@@ -17,12 +18,16 @@ const initState = {
 export const authReducer = (state = initState, { type, payload }) => {
   switch (type) {
     case SIGN_IN:
+      let data = payload;
+      saveData("user", data);
       return {
         ...state,
         user: payload,
       };
 
     case SIGN_UP:
+      let data1 = payload;
+      saveData("user", data1);
       return {
         ...state,
         user: payload,

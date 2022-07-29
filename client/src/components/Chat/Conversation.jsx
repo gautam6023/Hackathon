@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import UserIcon from "../../assets/Icons/user.png";
+import { getUser } from "../../assets/api/UserRequests";
 
 const Wrapper = styled.div`
   /* border: 1px solid white; */
@@ -46,7 +47,27 @@ const Wrapper = styled.div`
   }
 `;
 
-const Conversation = ({ imgUrl, name }) => {
+const Conversation = ({ imgUrl, name, data, currantUserId }) => {
+  // console.log(data, currantUser);
+
+  //Person with we are chatting
+  const [secondUser, setSecondUser] = useState({});
+
+  useEffect(() => {
+    const secondUserId = data.members.find((id) => id != currantUserId);
+    console.log(secondUserId);
+    const getUserdata = async () => {
+      try {
+        const { data } = await getUser(secondUserId);
+        console.log(data);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+
+    getUserdata();
+  }, []);
+
   return (
     <Wrapper>
       <span>

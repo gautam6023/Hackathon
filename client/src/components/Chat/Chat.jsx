@@ -1,10 +1,16 @@
-import React,{useEffect} from "react";
+
+import React, { useEffect, useState } from "react";
+
 import { ChatWrapper } from "./Chat.styled";
 import { AiOutlinePlus } from "react-icons/ai";
 import { RiSearchLine } from "react-icons/ri";
 import Conversation from "./Conversation";
-import { useDispatch,useSelector } from "react-redux";
-import { getUser } from "../../redux/Auth/action";
+
+import Swal from "sweetalert2/dist/sweetalert2.js";
+import axios from "axios";
+import { userChats } from "../../assets/api/ChatRequests";
+import { useSelector } from "react-redux";
+
 
 const chats = [
   {
@@ -29,16 +35,65 @@ const chats = [
 ];
 
 const Chat = () => {
-  const dispatch = useDispatch()
+
   const { user } = useSelector((state) => state.isAuth);
+  const [coversations, setConversations] = useState([]);
+
+  const openModal = () => {
+    Swal.fire({
+      title: "Submit Email of User",
+      input: "text",
+      inputAttributes: {
+        autocapitalize: "off",
+      },
+      showCancelButton: true,
+      confirmButtonText: "Look up",
+      showLoaderOnConfirm: true,
+      preConfirm: (login) => {
+        // console.log(login);
+        return axios
+          .post(
+            `http://localhost:7000/user/check`,
+            { email: login },
+            {
+              withCredentials: true,
+            }
+          )
+          .then((response) => {
+            return response.data;
+          })
+          .catch((error) => {
+            console.log(error);
+            Swal.showValidationMessage(
+              `Request failed: ${error.response.data.message}`
+            );
+          });
+      },
+      allowOutsideClick: () => !Swal.isLoading(),
+    }).then((result) => {
+      console.log(result);
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: `${result.value.login}'s avatar`,
+          imageUrl: result.value.avatar_url,
+        });
+      }
+    });
+  };
+
   useEffect(() => {
-    if (!user.UserData) {
-      dispatch(getUser());
-    }
-  }, [])
+    const getChats = async () => {
+      try {
+        const { data } = await userChats(user._id);
+        console.log(data.chatData, "chat");
+        setConversations([...data.chatData]);
+      } catch (e) {
+        console.log(e);
+      }
+    };
 
-
-
+    getChats();
+  }, []);
 
 
   return (
@@ -49,14 +104,21 @@ const Chat = () => {
             <RiSearchLine />
           </span>
           <input type="text" placeholder="Search or start new conversation" />
-          <span className="addNew">
+          <span className="addNew" onClick={() => openModal()}>
             <AiOutlinePlus />
           </span>
         </div>
         <div className="border"></div>
         <div className="conContainer">
-          {chats.map((el, i) => {
-            return <Conversation key={i} {...el} />;
+          {coversations.map((el, i) => {
+            return (
+              <Conversation
+                key={i}
+                data={el}
+                currantUserId={user._id}
+                {...el}
+              />
+            );
           })}
         </div>
       </div>

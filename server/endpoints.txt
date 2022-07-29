@@ -29,10 +29,17 @@
 
 5.) getUser  ----> http://localhost:7000/user/:userId    ==> GET
  --------------------------------------------------------------------------
+6.) checkUser ----> http://localhost:7000/user/check  ==> POST
 
+body=> {email}
+
+ --------------------------------------------------------------------------
+6.) get specific user ----> http://localhost:7000/user/userbyid/:id  ==> get
+
+body=> {email}
         <--------------CHAT-ROUTES----------------->
 
-  1.) createChat  ----> http://localhost:7000/chat    ==>POST
+  1.) createChat  ---->     ==>POST
    body==>
     {
        userId:""
@@ -64,7 +71,7 @@
        chatId:""
     }
 
-2.) createMessage ---->   http://localhost:7000/msg/:userId   ==> GET
+2.) getMessage ---->   http://localhost:7000/msg/:chatId   ==> GET
 
 
 
