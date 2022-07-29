@@ -2,12 +2,9 @@ import React, { useEffect } from "react";
 import { NavWrapper } from "./Nav.styled";
 import { RiAccountCircleFill } from "react-icons/ri";
 import { useDispatch, useSelector } from "react-redux";
-
-import { signoutAccount } from "../../redux/Auth/action";
-
 import { getUser } from "../../redux/Auth/action";
 import { Link, useNavigate } from "react-router-dom";
-import { deleteData } from "../../utils/localStorage";
+import PositionedMenu from "./Dashboard";
 
 const Navbar = () => {
   const dispatch = useDispatch();
@@ -15,10 +12,7 @@ const Navbar = () => {
   const { user } = useSelector((state) => state.isAuth);
   console.log(user);
 
-  const handleSignOut = () => {
-    deleteData("user");
-    dispatch(signoutAccount(navigate));
-  };
+
 
   // useEffect(() => {
   //   if (!user.firstName) {
@@ -40,21 +34,16 @@ const Navbar = () => {
               {user.imgUrl ? (
                 <img className="profilePic" src={user.imgUrl} alt="" />
               ) : (
-                <RiAccountCircleFill />
+                <RiAccountCircleFill style={{fontSize:"25px"}} />
               )}
             </span>
             <span className="username">
-              {user.firstName ? user.firstName : "User"}
+            <PositionedMenu/>
             </span>
-            <button>
-              <Link to={"/login"}>Login</Link>
-            </button>
           </div>
         </div>
       </div>
-      {user?.firstName ? (
-        <button onClick={handleSignOut}>Signout</button>
-      ) : null}
+  
     </NavWrapper>
   );
 };

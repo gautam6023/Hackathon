@@ -118,7 +118,7 @@ export const signoutAccount = (navigate) => async (dispatch) => {
     // console.log(process.env.REACT_APP_BASE_URL);
     const { data } = await axios.post("http://localhost:7000/user/signout", {
       withCredentials: true,
-      credentials: "includes",
+      credentials: 'include',
     });
 
     dispatch(signoutType());
