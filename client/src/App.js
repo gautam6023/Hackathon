@@ -1,16 +1,13 @@
-//import logo from './logo.svg';
-import './App.css';
-import Signin from './component/Sign pages/Signin';
-import Login from './component/Create AccountPages/Login';
-import { Routes,Route } from 'react-router-dom';
+import logo from "./logo.svg";
+import "./App.css";
+import Chat from "./components/Chat/Chat";
+import Navbar from "./components/Nav/Navbar";
 
 function App() {
   return (
     <div className="App">
-      <Routes>
-      <Route path="/signin" element={<Signin />} />
-        <Route path="/login" element={<Login />} />
-        </Routes>
+      <Navbar />
+      <Chat />npm 
     </div>
   );
 }

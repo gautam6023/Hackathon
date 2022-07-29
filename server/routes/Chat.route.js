@@ -5,6 +5,6 @@ const chatRouter = Router()
 
 chatRouter.post('/',createChat)
 chatRouter.get('/:userId',getUserChats)
-chatRouter.get('/find/:userId/:receiverId',getChat)
+// chatRouter.get('/find/:userId/:receiverId',getChat)
 
 module.exports = chatRouter;
