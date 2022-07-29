@@ -5,18 +5,20 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUser } from "../../redux/Auth/action";
 const Navbar = () => {
   const dispatch = useDispatch()
-  const {UserData} = useSelector((state)=>state.isAuth.user)
- 
+  const {user} = useSelector((state)=>state.isAuth)
+  console.log(user,"user in Navbar")
+  
+  const handleSignout = ()=>{
 
+  }
 
    useEffect(()=>{
-    if(!UserData){
+    if(!user?.UserData){
       dispatch(getUser())
     }
-    
-    
-   },[])
 
+   },[])
+  
 
   return (
     <NavWrapper>
@@ -26,9 +28,9 @@ const Navbar = () => {
       <div className="login">
         <div className="user">
           <p>
-            <span>{UserData?.firstName}</span>
+            <span>{user.firstName}</span>
             <span>
-              <RiAccountCircleFill />
+              <RiAccountCircleFill /> <span onClick={handleSignout}>SIGN_OUT</span>
             </span>
           </p>
         </div>

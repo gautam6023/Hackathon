@@ -52,7 +52,6 @@ const signinType = (payload)=>({
  payload
 })
 
-
 export const signinAccount = (payload,navigate) => async (dispatch) => {
    
   if(!payload.email && !payload.password) 
@@ -85,8 +84,6 @@ export const signinAccount = (payload,navigate) => async (dispatch) => {
   }
 };
 
-
-
 export const getUser = ()=> async (dispatch)=>{
 
   dispatch(getRequest());
@@ -97,11 +94,8 @@ export const getUser = ()=> async (dispatch)=>{
     const { data } = await axios.get("http://localhost:7000/user/getuser", {
       withCredentials: true, });
        console.log(data,"getUser")
+       dispatch(signinType(data))
 
-    // dispatch(signinType(data))
-   
-    
-    
   } catch (e) {
 
     console.log(e);
@@ -114,3 +108,4 @@ export const getUser = ()=> async (dispatch)=>{
   }
 
 }
+
