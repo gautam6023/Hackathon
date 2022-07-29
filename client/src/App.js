@@ -5,15 +5,17 @@ import Navbar from "./components/Nav/Navbar";
 import { Navigate, Route, Routes } from "react-router-dom";
 import Login from "./components/Auth/Create AccountPages/Login";
 import Signin from "./components/Auth/Sign pages/Signin";
-import { useSelector } from "react-redux";
+
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { RequiredAuth } from "./components/RequiredAuth/RequiredAuth";
 function App() {
-  const { user } = useSelector((state) => state.isAuth);
-  console.log(user, "app");
+
   return (
     <div className="App">
       <Navbar />
       <Routes>
-        <Route path={"/"} element={<Chat />} />
+        <Route path={"/"} element={<RequiredAuth><Chat /></RequiredAuth>} />
         <Route path={"/signup"} element={<Login />} />
         <Route path={"/login"} element={<Signin />} />
       </Routes>

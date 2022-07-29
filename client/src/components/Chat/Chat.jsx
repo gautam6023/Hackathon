@@ -1,12 +1,16 @@
+
 import React, { useEffect, useState } from "react";
+
 import { ChatWrapper } from "./Chat.styled";
 import { AiOutlinePlus } from "react-icons/ai";
 import { RiSearchLine } from "react-icons/ri";
 import Conversation from "./Conversation";
+
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import axios from "axios";
 import { userChats } from "../../assets/api/ChatRequests";
 import { useSelector } from "react-redux";
+
 
 const chats = [
   {
@@ -31,6 +35,7 @@ const chats = [
 ];
 
 const Chat = () => {
+
   const { user } = useSelector((state) => state.isAuth);
   const [coversations, setConversations] = useState([]);
 
@@ -89,6 +94,7 @@ const Chat = () => {
 
     getChats();
   }, []);
+
 
   return (
     <ChatWrapper>
