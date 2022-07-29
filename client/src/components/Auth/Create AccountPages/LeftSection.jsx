@@ -56,7 +56,7 @@ const LeftSection = () => {
   };
 
   const handlenav = () => {
-    navigate("/signin");
+    navigate("/login");
   };
 
   return (
@@ -146,6 +146,7 @@ const LeftSection = () => {
                       className={styled.input}
                       type={"url"}
                       name={"Imageurl"}
+                      onChange={handlechange}
                     />
                     <div
                       style={

@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 const Common = () => {
   const navigate = useNavigate();
   const handlenav = () => {
-    navigate("/login");
+    navigate("/signup");
   };
   return (
     <>
