@@ -5,7 +5,10 @@ import Navbar from "./components/Nav/Navbar";
 import { Route, Routes } from "react-router-dom";
 import Login from "./components/Auth/Create AccountPages/Login";
 import Signin from "./components/Auth/Sign pages/Signin";
+import { useSelector } from "react-redux";
 function App() {
+  const { user } = useSelector((state) => state.isAuth);
+
   return (
     <div className="App">
       {/* <Navbar />

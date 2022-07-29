@@ -89,7 +89,11 @@ export const getUser = () => async (dispatch) => {
     const { data } = await axios.get("http://localhost:7000/user/getuser", {
       withCredentials: true,
     });
-    console.log(data, "getUser");
+    // console.log(data, "getUser");
+
+    if (data) {
+      //   navigate("/");
+    }
 
     dispatch(signinType(data));
   } catch (e) {

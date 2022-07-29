@@ -29,7 +29,9 @@
 
 5.) getUser  ----> http://localhost:7000/user/:userId    ==> GET
  --------------------------------------------------------------------------
+6.) checkUser ----> http://localhost:7000/user/check  ==> POST
 
+body=> {email}
         <--------------CHAT-ROUTES----------------->
 
   1.) createChat  ----> http://localhost:7000/chat    ==>POST

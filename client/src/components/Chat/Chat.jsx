@@ -3,6 +3,8 @@ import { ChatWrapper } from "./Chat.styled";
 import { AiOutlinePlus } from "react-icons/ai";
 import { RiSearchLine } from "react-icons/ri";
 import Conversation from "./Conversation";
+import Swal from "sweetalert2/dist/sweetalert2.js";
+import axios from "axios";
 
 const chats = [
   {
@@ -27,6 +29,48 @@ const chats = [
 ];
 
 const Chat = () => {
+  const openModal = () => {
+    Swal.fire({
+      title: "Submit Email of User",
+      input: "text",
+      inputAttributes: {
+        autocapitalize: "off",
+      },
+      showCancelButton: true,
+      confirmButtonText: "Look up",
+      showLoaderOnConfirm: true,
+      preConfirm: (login) => {
+        // console.log(login);
+        return axios
+          .post(
+            `http://localhost:7000/user/check`,
+            { email: login },
+            {
+              withCredentials: true,
+            }
+          )
+          .then((response) => {
+            return response.data;
+          })
+          .catch((error) => {
+            console.log(error);
+            Swal.showValidationMessage(
+              `Request failed: ${error.response.data.message}`
+            );
+          });
+      },
+      allowOutsideClick: () => !Swal.isLoading(),
+    }).then((result) => {
+      console.log(result);
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: `${result.value.login}'s avatar`,
+          imageUrl: result.value.avatar_url,
+        });
+      }
+    });
+  };
+
   return (
     <ChatWrapper>
       <div className="conversationCon">
@@ -35,7 +79,7 @@ const Chat = () => {
             <RiSearchLine />
           </span>
           <input type="text" placeholder="Search or start new conversation" />
-          <span className="addNew">
+          <span className="addNew" onClick={() => openModal()}>
             <AiOutlinePlus />
           </span>
         </div>
