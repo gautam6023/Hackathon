@@ -1,8 +1,10 @@
-import React from "react";
+import React,{useEffect} from "react";
 import { ChatWrapper } from "./Chat.styled";
 import { AiOutlinePlus } from "react-icons/ai";
 import { RiSearchLine } from "react-icons/ri";
 import Conversation from "./Conversation";
+import { useDispatch,useSelector } from "react-redux";
+import { getUser } from "../../redux/Auth/action";
 
 const chats = [
   {
@@ -27,6 +29,18 @@ const chats = [
 ];
 
 const Chat = () => {
+  const dispatch = useDispatch()
+  const { user } = useSelector((state) => state.isAuth);
+  useEffect(() => {
+    if (!user.UserData) {
+      dispatch(getUser());
+    }
+  }, [])
+
+
+
+
+
   return (
     <ChatWrapper>
       <div className="conversationCon">

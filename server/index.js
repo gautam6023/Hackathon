@@ -2,7 +2,7 @@ const express = require("express");
 const chatRouter = require("./routes/Chat.route");
 const msgRouter = require("./routes/Message.route");
 const userRouter = require("./routes/User.route");
-const tokenRouter = require("./routes/token.route.js")
+
 
 const cookieParser = require("cookie-parser");
 const app = express();

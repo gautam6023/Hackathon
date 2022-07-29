@@ -1,22 +1,39 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import styled from "./LeftSection.module.css";
 //import { CartCount_Context } from "../../Context/cartCounter";
 import { red } from "@mui/material/colors";
-import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useDispatch,useSelector } from "react-redux";
 import { signinAccount } from "../../../redux/Auth/action";
 
 const Left = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate();
+  const location = useLocation();
   const [formData, Setformdata] = useState({});
   const [pass, Setpass] = useState("text");
+  const from = location?.state?.from?.pathname  || '/'
   //const { isLogged, setIsLogged } = useContext(CartCount_Context);
+  
+  const {user} =  useSelector((state)=>state.isAuth)
+
+
   const [logError, setlogError] = useState({
     error: "",
     message: "",
   });
+ 
+  useEffect(()=>{
+   if(user?.UserData){
+    
+    console.log(location,"location")
+    navigate(from,{replace:true})
+   }
+
+  },[])
+
+
 
   const handleclick = () => {
     Setpass(pass === "text" ? "password" : "text");

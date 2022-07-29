@@ -2,16 +2,25 @@ import React, { useEffect } from "react";
 import { NavWrapper } from "./Nav.styled";
 import { RiAccountCircleFill } from "react-icons/ri";
 import { useDispatch, useSelector } from "react-redux";
-import { getUser } from "../../redux/Auth/action";
+import { getUser, signoutAccount } from "../../redux/Auth/action";
+import { useNavigate } from "react-router-dom";
 const Navbar = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { user } = useSelector((state) => state.isAuth);
   console.log(user);
   useEffect(() => {
-    if (!user) {
+    if (!user.UserData) {
       dispatch(getUser());
     }
-  }, []);
+  }, [])
+
+  const handleSignOut = ()=>{
+   
+    dispatch(signoutAccount(navigate))
+
+  }
+
 
   return (
     <NavWrapper>
@@ -32,6 +41,7 @@ const Navbar = () => {
           </div>
         </div>
       </div>
+      {user?.firstName ? <button onClick={handleSignOut}>Signout</button> : null}
     </NavWrapper>
   );
 };

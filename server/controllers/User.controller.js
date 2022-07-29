@@ -26,7 +26,8 @@ const signup = async (req, res) => {
         const token = generateToken(UserData);
         res.cookie("token", token, {
             httpOnly: true,
-        });
+            
+        })
 
         return res.status(201).json({ UserData });
     } catch (err) {
@@ -79,7 +80,7 @@ const signin = async (req, res) => {
 const signout = async (req, res) => {
     res.clearCookie("token");
 
-    res.redirect("http://localhost:3000/signin");
+    // res.redirect("http://localhost:3000/login");
 
     res.status(200).json({ message: "Signed-out Successfully" });
 };

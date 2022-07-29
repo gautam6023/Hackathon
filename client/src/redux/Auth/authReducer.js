@@ -27,6 +27,11 @@ export const authReducer = (state = initState, { type, payload }) => {
         ...state,
         user: payload,
       };
+    case SIGN_OUT:
+      return {
+        ...state,
+        user: {},
+      };
 
     case GET_REQUEST:
       return {

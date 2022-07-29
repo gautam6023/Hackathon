@@ -7,15 +7,12 @@ import Login from "./components/Auth/Create AccountPages/Login";
 import Signin from "./components/Auth/Sign pages/Signin";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
+import { RequiredAuth } from "./components/RequiredAuth/RequiredAuth";
 function App() {
 
- const dispatch = useDispatch()
+
  
-  useEffect(()=>{
-    
-
-
-  },[])
+ 
 
 
   return (
@@ -23,7 +20,7 @@ function App() {
      
       <Navbar />
       <Routes>
-        <Route path={"/"} element={<Chat />} />
+        <Route path={"/"} element={<RequiredAuth><Chat /></RequiredAuth>} />
         <Route path={"/signup"} element={<Login />} />
         <Route path={"/login"} element={<Signin />} />
       </Routes>
