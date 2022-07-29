@@ -26,9 +26,10 @@ UserSchema.pre("save", function (next) {
 
 UserSchema.methods.checkpassword = async function (password) {
   const hashedpassword = this.password;
-
+ console.log("hello")
   try {
-    const match = bcrypt.compare(password, hashedpassword);
+    const match = await bcrypt.compare(password, hashedpassword);
+    console.log(match,"match")
     return match;
   } catch (error) {
     return error;

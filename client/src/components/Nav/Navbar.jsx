@@ -1,7 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { NavWrapper } from "./Nav.styled";
 import { RiAccountCircleFill } from "react-icons/ri";
+import { useDispatch, useSelector } from "react-redux";
+import { getUser } from "../../redux/Auth/action";
 const Navbar = () => {
+  const dispatch = useDispatch()
+  const {UserData} = useSelector((state)=>state.isAuth.user)
+ 
+
+
+   useEffect(()=>{
+    if(!UserData){
+      dispatch(getUser())
+    }
+    
+    
+   },[])
+
+
   return (
     <NavWrapper>
       <div className="logoContainer">
@@ -10,7 +26,7 @@ const Navbar = () => {
       <div className="login">
         <div className="user">
           <p>
-            <span>User</span>
+            <span>{UserData?.firstName}</span>
             <span>
               <RiAccountCircleFill />
             </span>
