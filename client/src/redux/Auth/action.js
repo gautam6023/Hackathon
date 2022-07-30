@@ -19,8 +19,11 @@ const signupType = (payload) => ({
   payload,
 });
 
+
+
 export const createAccount = (payload, navigate) => async (dispatch) => {
   dispatch(getRequest());
+  let token = localStorage.getItem("token");
   try {
     // console.log(process.env.REACT_APP_BASE_URL);
     console.log(payload, "payload");
@@ -31,7 +34,11 @@ export const createAccount = (payload, navigate) => async (dispatch) => {
         withCredentials: true,
         credentials: "include",
       }
-    );
+          );
+
+          token =data.token;
+    localStorage.setItem('token',token)
+
     console.log(data, "data");
     dispatch(signupType(data.UserData));
     if (data) {
@@ -57,6 +64,7 @@ export const signinAccount = (payload, navigate) => async (dispatch) => {
   if (!payload.email && !payload.password) return alert("Invalid Input");
 
   dispatch(getRequest());
+  let token = localStorage.getItem("token");
 
   try {
     // console.log(process.env.REACT_APP_BASE_URL);
@@ -70,6 +78,8 @@ export const signinAccount = (payload, navigate) => async (dispatch) => {
       }
     );
     console.log(data, "data");
+       token = data.token
+     localStorage.setItem('token',token)
 
     dispatch(signinType(data.UserData));
     if (data) {
@@ -88,7 +98,7 @@ export const signinAccount = (payload, navigate) => async (dispatch) => {
 
 export const getUser = () => async (dispatch) => {
   dispatch(getRequest());
-
+  let token = localStorage.getItem("token");
   try {
     // console.log(process.env.REACT_APP_BASE_URL);
 
@@ -96,7 +106,9 @@ export const getUser = () => async (dispatch) => {
       "https://server-marvel.herokuapp.com/getuser",
       {
         withCredentials: true,
-        credentials: "include",
+        headers: {
+          Authorization: token,
+        },
       }
     );
     console.log(data, "getUser");
