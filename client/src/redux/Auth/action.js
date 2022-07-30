@@ -103,14 +103,16 @@ export const getUser = () => async (dispatch) => {
     // console.log(process.env.REACT_APP_BASE_URL);
 
     const { data } = await axios.get(
-      "https://server-marvel.herokuapp.com/getuser",
-      {
-        withCredentials: true,
+      "https://server-marvel.herokuapp.com/user/getuser",
+      // "https://localhost:7000/getuser",
+       {
+       withCredentials: true,
         headers: {
           Authorization: token,
         },
       }
     );
+
     console.log(data, "getUser");
 
     if (data) {
@@ -138,14 +140,17 @@ export const signoutAccount = (navigate) => async (dispatch) => {
 
   try {
     // console.log(process.env.REACT_APP_BASE_URL);
+    let token = localStorage.getItem("token");
     const { data } = await axios.post(
       "https://server-marvel.herokuapp.com/user/signout",
       {
         withCredentials: true,
-        credentials: "include",
-      }
+         headers: {
+           Authorization: token,
+         },
+       }
     );
-
+     localStorage.removeItem("token");
     dispatch(signoutType());
     navigate("/login");
   } catch (e) {

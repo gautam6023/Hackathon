@@ -56,14 +56,19 @@ const Chat = () => {
       showLoaderOnConfirm: true,
       preConfirm: (login) => {
         // console.log(login);
+        let token = localStorage.getItem("token");
+        console.log(token)
         return axios
           .post(
             `https://server-marvel.herokuapp.com/user/check`,
+            // 'http://localhost:7000/user/check',
             { email: login },
             {
               withCredentials: true,
-              credentials: "include",
-            }
+               headers: {
+                 Authorization: token,
+               },
+             }
           )
           .then((response) => {
             return response.data;
