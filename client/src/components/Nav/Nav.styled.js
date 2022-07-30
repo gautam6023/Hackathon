@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const NavWrapper = styled.nav`
   border: 1px solid black;
   height: 55px;
-  width: 100%;
+  width: 99%;
   margin: auto;
   background-color: black;
   display: flex;

@@ -1,13 +1,13 @@
 import styled from "styled-components";
 
 export const ChatWrapper = styled.div`
-  height: 100vh;
-  width: 100%;
+  height: 830px;
+  width: 99%;
   margin: auto;
   background-color: var(--background);
   display: flex;
   & > div {
-    border: 2px solid black;
+    /* border: 2px solid black; */
     border-radius: 5px;
   }
   .conversationCon {
@@ -20,7 +20,8 @@ export const ChatWrapper = styled.div`
       height: 4%;
       display: flex;
       align-items: center;
-      background-color: #64748b;
+      /* background-color: #64748b; */
+      background-color: var(--inputBack);
       /* border: 1px solid white; */
       box-sizing: border-box;
       padding: 5px;
@@ -30,7 +31,8 @@ export const ChatWrapper = styled.div`
       input {
         width: 83%;
         height: 95%;
-        background-color: #64748b;
+        /* background-color: #64748b; */
+        background-color: var(--inputBack);
         border: 0;
         text-indent: 14px;
         font-size: 18px;

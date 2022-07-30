@@ -4,3 +4,12 @@ const API = axios.create({ baseURL: "http://localhost:7000" });
 
 export const userChats = (id) =>
   API.get(`/chat/${id}`, { withCredentials: true });
+
+export const addNewChat = (receverId, myId) =>
+  API.post(
+    `/chat`,
+    { userId: myId, receiverId: receverId },
+    {
+      withCredentials: true,
+    }
+  );

@@ -10,9 +10,7 @@ const Navbar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { user } = useSelector((state) => state.isAuth);
-  console.log(user);
-
-
+  // console.log(user);
 
   // useEffect(() => {
   //   if (!user.firstName) {
@@ -34,16 +32,15 @@ const Navbar = () => {
               {user.imgUrl ? (
                 <img className="profilePic" src={user.imgUrl} alt="" />
               ) : (
-                <RiAccountCircleFill style={{fontSize:"25px"}} />
+                <RiAccountCircleFill style={{ fontSize: "25px" }} />
               )}
             </span>
             <span className="username">
-            <PositionedMenu/>
+              <PositionedMenu />
             </span>
           </div>
         </div>
       </div>
-  
     </NavWrapper>
   );
 };

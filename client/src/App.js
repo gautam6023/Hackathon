@@ -10,16 +10,21 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { RequiredAuth } from "./components/RequiredAuth/RequiredAuth";
 function App() {
-
   return (
     <div className="App">
       <Navbar />
       <Routes>
-        <Route path={"/"} element={<RequiredAuth><Chat /></RequiredAuth>} />
+        <Route
+          path={"/"}
+          element={
+            <RequiredAuth>
+              <Chat />
+            </RequiredAuth>
+          }
+        />
         <Route path={"/signup"} element={<Login />} />
         <Route path={"/login"} element={<Signin />} />
       </Routes>
-      npm
     </div>
   );
 }

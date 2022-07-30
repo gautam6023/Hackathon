@@ -47,7 +47,7 @@ const Wrapper = styled.div`
   }
 `;
 
-const Conversation = ({ imgUrl, name, data, currantUserId }) => {
+const Conversation = ({ imgUrl, name, data, currantUserId, onClick }) => {
   // console.log(data, currantUser);
 
   //Person with we are chatting
@@ -55,11 +55,12 @@ const Conversation = ({ imgUrl, name, data, currantUserId }) => {
 
   useEffect(() => {
     const secondUserId = data.members.find((id) => id != currantUserId);
-    console.log(secondUserId);
+    // console.log(secondUserId);
     const getUserdata = async () => {
       try {
         const { data } = await getUser(secondUserId);
-        console.log(data);
+        // console.log(data, "secondUser");
+        setSecondUser(data.user);
       } catch (e) {
         console.log(e);
       }
@@ -69,12 +70,12 @@ const Conversation = ({ imgUrl, name, data, currantUserId }) => {
   }, []);
 
   return (
-    <Wrapper>
+    <Wrapper onClick={onClick}>
       <span>
-        <img src={imgUrl ? imgUrl : UserIcon} alt="" />
+        <img src={secondUser.imgUrl ? secondUser.imgUrl : UserIcon} alt="" />
       </span>
       <div className="userDetails">
-        <p className="name">{name}</p>
+        <p className="name">{secondUser.firstName}</p>
         <p className="status">Online</p>
       </div>
     </Wrapper>

@@ -8,7 +8,13 @@
 }
 
 :root {
-  --background: #1e293b;
+  /* --background: #1e293b; */
+  /* --background: #0c1114; */
+  --background: #161719;
   --border: #344051;
-  --hovercon: #101825;
+  /* --hovercon: #101825; */
+  --hovercon: #334155;
+  --recieverBack: #21252a;
+  --recieverBorder: #373a3e;
+  --inputBack: #323337;
 }
