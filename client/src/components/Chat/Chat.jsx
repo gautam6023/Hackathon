@@ -43,7 +43,7 @@ const Chat = () => {
         setReceiveMessage(data);
       });
     }
-  });
+  }, []);
   const openModal = () => {
     Swal.fire({
       title: "Submit Email of User",
