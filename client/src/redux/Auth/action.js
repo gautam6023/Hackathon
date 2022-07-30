@@ -24,9 +24,13 @@ export const createAccount = (payload, navigate) => async (dispatch) => {
   try {
     // console.log(process.env.REACT_APP_BASE_URL);
     console.log(payload, "payload");
-    const { data } = await axios.post("http://localhost:7000/user", payload, {
-      withCredentials: true,
-    });
+    const { data } = await axios.post(
+      "https://server-marvel.herokuapp.com/user",
+      payload,
+      {
+        withCredentials: true,
+      }
+    );
     console.log(data, "data");
     dispatch(signupType(data.UserData));
     if (data) {
@@ -57,7 +61,7 @@ export const signinAccount = (payload, navigate) => async (dispatch) => {
     // console.log(process.env.REACT_APP_BASE_URL);
     console.log(payload, "payload");
     const { data } = await axios.post(
-      "http://localhost:7000/user/signin",
+      "https://server-marvel.herokuapp.com/user/signin",
       payload,
       {
         withCredentials: true,
@@ -86,9 +90,12 @@ export const getUser = () => async (dispatch) => {
   try {
     // console.log(process.env.REACT_APP_BASE_URL);
 
-    const { data } = await axios.get("http://localhost:7000/user/getuser", {
-      withCredentials: true,
-    });
+    const { data } = await axios.get(
+      "https://server-marvel.herokuapp.com/getuser",
+      {
+        withCredentials: true,
+      }
+    );
     console.log(data, "getUser");
 
     if (data) {
@@ -116,10 +123,13 @@ export const signoutAccount = (navigate) => async (dispatch) => {
 
   try {
     // console.log(process.env.REACT_APP_BASE_URL);
-    const { data } = await axios.post("http://localhost:7000/user/signout", {
-      withCredentials: true,
-      credentials: 'include',
-    });
+    const { data } = await axios.post(
+      "https://server-marvel.herokuapp.com/user/signout",
+      {
+        withCredentials: true,
+        credentials: "include",
+      }
+    );
 
     dispatch(signoutType());
     navigate("/login");

@@ -23,7 +23,7 @@ const Chat = () => {
   const socket = useRef();
 
   useEffect(() => {
-    socket.current = io("http://localhost:7000");
+    socket.current = io("https://server-marvel.herokuapp.com/");
     socket.current.emit("newUser", user._id);
     socket.current.on("getUsers", (users) => {
       setOnlineUsers(users);
@@ -58,7 +58,7 @@ const Chat = () => {
         // console.log(login);
         return axios
           .post(
-            `http://localhost:7000/user/check`,
+            `https://server-marvel.herokuapp.com/check`,
             { email: login },
             {
               withCredentials: true,
