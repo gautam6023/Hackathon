@@ -16,12 +16,6 @@ const ChatBox = ({
   const [messages, setMessages] = useState([]);
   const [text, setText] = useState("");
 
-  //checking recive message
-  useEffect(() => {
-    if (receiveMessage != null && receiveMessage.chatId === chat._id) {
-      setMessages([...messages, receiveMessage]);
-    }
-  }, [receiveMessage]);
   //Getting userdata
   useEffect(() => {
     const UserId = chat?.members?.find((user) => user != currentUser);
@@ -70,7 +64,7 @@ const ChatBox = ({
     const receiverId = chat.members.find((id) => id != currentUser);
     setSocketSendMessage({ receiverId, ...Message });
 
-    console.log(Message);
+    console.log(receiverId, Message, "rec");
   };
 
   const sendMessage = async (payload) => {
@@ -83,6 +77,13 @@ const ChatBox = ({
       console.log(e);
     }
   };
+
+  //checking recive message
+  useEffect(() => {
+    if (receiveMessage != null && receiveMessage?.chatId === chat?._id) {
+      setMessages([...messages, receiveMessage]);
+    }
+  }, [receiveMessage]);
   return (
     <ChatBoxWrapper>
       {chat ? (
@@ -109,21 +110,21 @@ const ChatBox = ({
                 </div>
               );
             })}
-            <div className="typeContainer">
-              {/* <InputEmoji theme="dark" /> */}
-              <div className="inputCon">
-                <input
-                  type="text"
-                  value={text}
-                  onChange={(e) => setText(e.target.value)}
-                  className="typeMessage"
-                  placeholder="Type here..."
-                />
-              </div>
-              <span onClick={() => handleSendMessage()}>
-                <BiSend />
-              </span>
+          </div>
+          <div className="typeContainer">
+            {/* <InputEmoji theme="dark" /> */}
+            <div className="inputCon">
+              <input
+                type="text"
+                value={text}
+                onChange={(e) => setText(e.target.value)}
+                className="typeMessage"
+                placeholder="Type here..."
+              />
             </div>
+            <span onClick={() => handleSendMessage()}>
+              <BiSend />
+            </span>
           </div>
         </>
       ) : (

@@ -1,13 +1,14 @@
 import styled from "styled-components";
 
 export const ChatBoxWrapper = styled.div`
-  border: 1px solid blue;
+  /* border: 1px solid blue; */
+  border-left: 1px solid var(--recieverBorder);
   height: 100%;
   display: flex;
   flex-direction: column;
   .header {
     height: 75px;
-    border: 1px solid black;
+    /* border: 1px solid black; */
     /* background-color: #334155; */
     /* background-color: #202c33; */
     /* background-color: #1f2029; */
@@ -35,7 +36,8 @@ export const ChatBoxWrapper = styled.div`
   .messageContainer {
     /* height: 100%; */
     flex-grow: 1;
-    border: 1px solid red;
+    /* border: 1px solid red; */
+    overflow-y: scroll;
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -86,71 +88,70 @@ export const ChatBoxWrapper = styled.div`
         font-weight: 500;
       }
     }
+  }
+  .typeContainer {
+    /* position: absolute; */
+    /* border: 1px solid white; */
+    height: 50px;
+    bottom: 10px;
+    /* width: 99%; */
+    /* left: 50%; */
+    border-radius: 10px;
+    /* transform: translate(-50%, 0); */
 
-    .typeContainer {
-      position: absolute;
-      /* border: 1px solid white; */
-      height: 50px;
-      bottom: 10px;
-      width: 99%;
-      left: 50%;
-      border-radius: 10px;
-      transform: translate(-50%, 0);
-
+    display: flex;
+    box-sizing: border-box;
+    /* padding: 5px; */
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    .inputCon {
+      background-color: var(--inputBack);
+      height: 100%;
+      flex-grow: 1;
       display: flex;
-      box-sizing: border-box;
-      /* padding: 5px; */
       align-items: center;
-      justify-content: center;
-      gap: 10px;
-      .inputCon {
+      justify-content: flex-start;
+      border-radius: 10px;
+      /* border: 1px solid red; */
+      box-sizing: border-box;
+      padding: 5px 10px;
+
+      input {
+        height: 90%;
+        width: 95%;
         background-color: var(--inputBack);
-        height: 100%;
-        flex-grow: 1;
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
-        border-radius: 10px;
-        /* border: 1px solid red; */
-        box-sizing: border-box;
-        padding: 5px 10px;
-
-        input {
-          height: 90%;
-          width: 95%;
-          background-color: var(--inputBack);
-          text-indent: 10px;
-          font-size: 20px;
-          color: #ffffff;
-          font-weight: 400;
-          /* border: 1px solid white; */
-          &::placeholder {
-            font-size: 18px;
-            font-weight: 500;
-          }
-
-          &:focus {
-            outline: 0;
-          }
-
-          border: 0;
-        }
-      }
-      span {
-        /* border: 1px solid black; */
-        height: 45px;
-        aspect-ratio: 1;
-        display: flex;
-        align-items: center;
-        font-size: 28px;
-        border-radius: 1000px;
-        justify-content: center;
-        /* background-color: var(--recieverBack); */
-        background-color: #1e8254;
-        border: 1px solid var(--recieverBorder);
-        cursor: pointer;
+        text-indent: 10px;
+        font-size: 20px;
         color: #ffffff;
+        font-weight: 400;
+        /* border: 1px solid white; */
+        &::placeholder {
+          font-size: 18px;
+          font-weight: 500;
+        }
+
+        &:focus {
+          outline: 0;
+        }
+
+        border: 0;
       }
+    }
+    span {
+      /* border: 1px solid black; */
+      height: 45px;
+      aspect-ratio: 1;
+      display: flex;
+      align-items: center;
+      font-size: 28px;
+      border-radius: 1000px;
+      justify-content: center;
+      /* background-color: var(--recieverBack); */
+      background-color: #1e8254;
+      border: 1px solid var(--recieverBorder);
+      cursor: pointer;
+      color: #ffffff;
     }
   }
 `;

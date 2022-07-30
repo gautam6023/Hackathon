@@ -26,13 +26,13 @@ const Chat = () => {
     socket.current = io("http://localhost:7000");
     socket.current.emit("newUser", user._id);
     socket.current.on("getUsers", (users) => {
-      // console.log(users);
       setOnlineUsers(users);
     });
   }, [user]);
 
   useEffect(() => {
     if (sendSocketMessage !== null) {
+      console.log(sendSocketMessage, "sec");
       socket.current.emit("sendMessage", sendSocketMessage);
     }
   }, [sendSocketMessage]);
@@ -104,7 +104,7 @@ const Chat = () => {
     };
 
     getChats();
-  }, []);
+  }, [user._id]);
 
   return (
     <ChatWrapper>

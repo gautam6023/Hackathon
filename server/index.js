@@ -20,27 +20,31 @@ let activeUsers = [];
 io.on("connection", (socket) => {
   console.log("New User", socket.id);
   socket.on("newUser", (newUserId) => {
+    console.log("new", newUserId);
+    let data = activeUsers.some((user) => user.userId === newUserId);
+    console.log(data);
     if (!activeUsers.some((user) => user.userId === newUserId)) {
       activeUsers.push({
         userId: newUserId,
         socketId: socket.id,
       });
     }
-
+    // console.log(activeUsers);
+    io.emit("getUsers", activeUsers);
+  });
+  console.log(activeUsers);
+  socket.on("disconnect", () => {
+    activeUsers = activeUsers.filter((user) => user.socketId !== socket.id);
     io.emit("getUsers", activeUsers);
   });
 
   socket.on("sendMessage", (msg) => {
     const { receiverId } = msg;
-    const user = activeUsers.find((userId) => userId === receiverId);
+    const user = activeUsers.find((user) => user.userId === receiverId);
+    console.log("message", msg, user);
     if (user) {
       io.to(user.socketId).emit("receiveMessage", msg);
     }
-  });
-
-  socket.on("disconnect", () => {
-    activeUsers = activeUsers.filter((user) => user.socketId != socket.id);
-    io.emit("getUsers", activeUsers);
   });
 });
 
