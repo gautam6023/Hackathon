@@ -29,6 +29,7 @@ export const createAccount = (payload, navigate) => async (dispatch) => {
       payload,
       {
         withCredentials: true,
+        credentials: "include",
       }
     );
     console.log(data, "data");
@@ -65,6 +66,7 @@ export const signinAccount = (payload, navigate) => async (dispatch) => {
       payload,
       {
         withCredentials: true,
+        credentials: "include",
       }
     );
     console.log(data, "data");
@@ -94,6 +96,7 @@ export const getUser = () => async (dispatch) => {
       "https://server-marvel.herokuapp.com/getuser",
       {
         withCredentials: true,
+        credentials: "include",
       }
     );
     console.log(data, "getUser");
