@@ -58,10 +58,11 @@ const Chat = () => {
         // console.log(login);
         return axios
           .post(
-            `https://server-marvel.herokuapp.com/check`,
+            `https://server-marvel.herokuapp.com/user/check`,
             { email: login },
             {
               withCredentials: true,
+              credentials: "include",
             }
           )
           .then((response) => {
